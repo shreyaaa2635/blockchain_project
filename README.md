@@ -50,7 +50,7 @@ bank-ledger/
 ### 1. Clone the repo
 
 ```
-git clone https://github.com/shreyaaa2635/Bank-Ledger.git
+git clone https://github.com/shreyaaa2635/blockchain_project.git
 cd Bank-Ledger
 ```
 
