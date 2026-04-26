@@ -29,7 +29,7 @@ Users can create accounts, deposit ETH, transfer funds, and withdraw — all pow
 ## 📂 Project Structure
 
 ```
-bank-ledger/
+blockchain_project/
 │
 ├── contracts/        # Solidity smart contracts
 ├── scripts/          # Deployment scripts
@@ -51,7 +51,7 @@ bank-ledger/
 
 ```
 git clone https://github.com/shreyaaa2635/blockchain_project.git
-cd Bank-Ledger
+cd blockchain_project
 ```
 
 ---
