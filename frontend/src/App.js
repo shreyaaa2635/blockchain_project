@@ -27,16 +27,18 @@ function App() {
         const signer = await provider.getSigner();
         const address = await signer.getAddress();
 
-        const contract = new ethers.Contract(
+        const contractInstance = new ethers.Contract(
           contractAddress,
           abi,
           signer
         );
 
-        setContract(contract);
+        setContract(contractInstance);
         setAccount(address);
 
-        await getBalance(contract);
+        // 🔥 Fetch balance directly (no external dependency)
+        const bal = await contractInstance.getBalance();
+        setBalance(ethers.formatEther(bal));
 
       } catch (err) {
         console.error(err);
@@ -47,11 +49,11 @@ function App() {
   }, []);
 
   // 🔹 GET BALANCE
-  const getBalance = async (contractInstance = contract) => {
+  const getBalance = async () => {
     try {
-      if (!contractInstance) return;
+      if (!contract) return;
 
-      const bal = await contractInstance.getBalance();
+      const bal = await contract.getBalance();
       setBalance(ethers.formatEther(bal));
     } catch (err) {
       console.error(err);
@@ -186,7 +188,6 @@ const styles = {
     background: "#0f172a",
     color: "#fff",
   },
-
   card: {
     background: "#1e293b",
     padding: "30px",
@@ -194,24 +195,20 @@ const styles = {
     width: "400px",
     boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
   },
-
   title: {
     textAlign: "center",
     marginBottom: "20px",
   },
-
   label: {
     fontSize: "12px",
     wordBreak: "break-all",
     color: "#94a3b8",
   },
-
   balance: {
     fontSize: "20px",
     margin: "15px 0",
     color: "#22c55e",
   },
-
   input: {
     width: "100%",
     padding: "10px",
@@ -220,13 +217,11 @@ const styles = {
     border: "none",
     outline: "none",
   },
-
   buttonRow: {
     display: "flex",
     justifyContent: "space-between",
     marginTop: "10px",
   },
-
   btn: {
     flex: 1,
     margin: "5px",
@@ -237,7 +232,6 @@ const styles = {
     background: "#3b82f6",
     color: "#fff",
   },
-
   btnDanger: {
     flex: 1,
     margin: "5px",
@@ -248,7 +242,6 @@ const styles = {
     background: "#ef4444",
     color: "#fff",
   },
-
   primaryBtn: {
     width: "100%",
     padding: "10px",
